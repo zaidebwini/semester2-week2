@@ -1,29 +1,38 @@
 #include <stdio.h>
 
-int main(void) {
+/*
+ * Portfolio submission
+ * Name: Zaid Ebwini
+ * ID: 201951723
+ */
 
-    // given values
+int main( void ) {
+
+    // define and initialise variables for the problem data
     double salary = 36250.0;
-    double ni_rate = 8.0;
-    double tax_rate = 15.0;
+    double ni_rate = 8.0;     // %
+    double tax_rate = 15.0;   // %
+    double tax_free_allowance = 12500.0;
 
-    // calculations
-    double ni = salary * ni_rate;
+    // calculate the deductions and final take-home salary
+    double ni_contribution = salary * (ni_rate / 100.0);
 
-    double taxable_income = salary - ni - 12500;
-    if (taxable_income < 0) {
-        taxable_income = 0;
+    double remaining_after_ni = salary - ni_contribution;
+
+    double taxable_amount = remaining_after_ni - tax_free_allowance;
+    if (taxable_amount < 0.0) {
+        taxable_amount = 0.0;
     }
 
-    double tax = taxable_income * tax_rate;
+    double tax_contribution = taxable_amount * (tax_rate / 100.0);
 
-    double take_home = salary - ni - tax;
+    double take_home_salary = salary - ni_contribution - tax_contribution;
 
-    // output (use exactly this format)
+    // Use only these print statement with appropriate formatting and variable names
     printf("Salary £%.2f\n", salary);
-    printf("NI contribution £%.2f\n", ni);
-    printf("Tax contribution £%.2f\n", tax);
-    printf("Take home salary £%.2f\n", take_home);
+    printf("NI contribution £%.2f\n", ni_contribution);
+    printf("Tax contribution £%.2f\n", tax_contribution);
+    printf("Take home salary £%.2f\n", take_home_salary);
 
     return 0;
 }
